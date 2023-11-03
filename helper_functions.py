@@ -86,7 +86,6 @@ def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_s
            ylabel="True label",
            # create enough axis slots for each class
            xticks=np.arange(n_classes),
-           plt.xticks(rotation=45)
            yticks=np.arange(n_classes),
            # axes will labeled with class names (if they exist) or ints
            xticklabels=labels,
@@ -95,6 +94,7 @@ def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_s
     # Make x-axis labels appear on bottom
     ax.xaxis.set_label_position("bottom")
     ax.xaxis.tick_bottom()
+    ax.xticks(rotation=45)
 
     # Set the threshold for different colors
     threshold = (cm.max() + cm.min()) / 2.
