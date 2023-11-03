@@ -94,7 +94,7 @@ def make_confusion_matrix(y_true, y_pred, classes=None, figsize=(10, 10), text_s
     # Make x-axis labels appear on bottom
     ax.xaxis.set_label_position("bottom")
     ax.xaxis.tick_bottom()
-    ax.xticks(rotation=45)
+    plt.xticks(rotation=45)
 
     # Set the threshold for different colors
     threshold = (cm.max() + cm.min()) / 2.
