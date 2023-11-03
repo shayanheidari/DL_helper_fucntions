@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import itertools
 import tensorflow as tf
+import random
 
 # Create a function to import an image and resize it to be able to be used with our model
 
