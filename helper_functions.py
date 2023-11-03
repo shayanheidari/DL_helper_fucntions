@@ -347,3 +347,28 @@ def make_split(root_dir):
     for directorys in classes:
         shutil.rmtree(root_dir+directorys)
     return classes
+
+
+
+def pred_plot(model, class_names):
+    plt.figure(figsize=(17,10))
+    for i in range(3):
+        # Choose a random image from random classes
+        class_name = random.choice(class_names)
+        filename = random.choice(os.listdir(test_dir + "/" + class_name))
+        filepath = test_dir + class_name + "/" + filename
+
+        # Load the image and make predictions
+        img = load_and_prep_image(filepath,scale=False)
+        pred_prob = model.predict(tf.expand_dims(img,axis=0)) # Get prediction probability array
+        pred_class = class_names[pred_prob.argmax()] # Get highest prediction probability index
+
+        # Plot the images
+        plt.subplot(1,3,i+1)
+        plt.imshow(img/255.)
+        if class_name == pred_class: # If predicted class matches truth class, make text green
+            title_color = "g"
+        else:
+            title_color = "r"
+        plt.title(f"actual: {class_name}\npred: {pred_class}\nprob: {pred_prob.max():.2f}", c=title_color)
+        plt.axis(False)
